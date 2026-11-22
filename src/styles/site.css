@@ -11,7 +11,8 @@ body { margin: 0; background: var(--color-paper); color: var(--color-ink); font:
 .skip-link { position: absolute; z-index: 2; top: .5rem; left: .5rem; padding: .5rem; background: var(--color-paper); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
 .hero { display: grid; grid-template-columns: .85fr 1fr; align-items: center; gap: clamp(1rem, 4vw, 4rem); padding-block: clamp(2rem, 5vw, 4.5rem); }
-.hero h1 { font: clamp(4.5rem, 11vw, 10.5rem)/.8 var(--font-display); letter-spacing: -.045em; overflow-wrap: anywhere; }
+.hero-copy { container-type: inline-size; }
+.hero h1 { font: min(23cqi, 9rem)/.86 var(--font-display); letter-spacing: -.045em; overflow-wrap: anywhere; }
 .hero-copy .tagline { margin-top: 1.35rem; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 600; }
 .intro { color: var(--color-muted); max-width: 32ch; margin-block: .75rem 1.15rem; }
 .hero-art { aspect-ratio: 1.23; overflow: hidden; background: var(--color-paper-2); }
@@ -67,7 +68,7 @@ pre { padding: .85rem 1rem; background: var(--color-paper-2); margin-block: .4re
   .site-header #theme-toggle { width: 2rem; height: 2rem; }
   .hero, .release-heading { grid-template-columns: 1fr; }
   .hero-art { grid-row: 1; aspect-ratio: 1.8; }
-  .hero h1 { font-size: clamp(4rem, 16vw, 6.5rem); }
+  .hero h1 { font-size: min(23cqi, 6.5rem); }
   .hero-copy .tagline { margin-top: .85rem; }
   .tracks { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .about { grid-template-columns: 1fr; gap: 0; }
