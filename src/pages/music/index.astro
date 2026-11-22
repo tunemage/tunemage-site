@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/GalleryMasonry.astro';
+import { getMusic } from '../../data';
+const tracks = await getMusic();
+---
+<Layout title="Music" section="music">
+  <header class="page-heading"><h1>Music</h1><p class="muted">楽曲、歌詞、制作の記録。</p></header>
+  {tracks.length ? <Gallery tracks={tracks} /> : <p class="muted">楽曲の公開をお待ちください。</p>}
+</Layout>

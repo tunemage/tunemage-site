@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LiveEvents from '../../components/LiveEvents.astro';
+import { getLive, jstToday } from '../../data';
+const events = await getLive();
+const today = jstToday();
+const upcoming = events.filter(({ data }) => data.date >= today).sort((a, b) => a.data.date.localeCompare(b.data.date));
+const past = events.filter(({ data }) => data.date < today).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+<Layout title="Live" section="live">
+  <header class="page-heading"><h1>Live</h1><p class="muted">出演予定と、これまでのライブ。</p></header>
+  <section class="section"><h2>出演予定</h2>
+    {upcoming.length ? <LiveEvents events={upcoming} /> : <p class="muted">現在、公開中の出演予定はありません。</p>}
+  </section>
+  <section class="section"><h2>出演履歴</h2>
+    {past.length ? <LiveEvents events={past} /> : <p class="muted">出演履歴はまだありません。</p>}
+  </section>
+</Layout>

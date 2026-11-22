@@ -1,0 +1,36 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getMusic, href, displayDate, serviceLinks } from '../../data';
+export async function getStaticPaths() {
+  return (await getMusic()).map((track) => ({ params: { slug: track.data.slug }, props: { track } }));
+}
+interface Props { track: CollectionEntry<'music'>; }
+const { track } = Astro.props;
+const { data } = track;
+const { Content } = await render(track);
+const links = serviceLinks(data);
+---
+<Layout title={data.title} description={data.summary} section="music">
+  <a class="text-link back" href={href('music/')}>楽曲一覧に戻る</a>
+  <article>
+    <header class="release-heading">
+      {data.cover && <div class="track-art" transition:name={`cover-${data.slug}`}><img src={href(data.cover)} alt={data.coverAlt} width="640" height="640" /></div>}
+      <div>
+        <time class="muted" datetime={data.date}>{displayDate(data.date)}</time>
+        {data.sample && <span class="sample">サンプル</span>}
+        <h1 class="song-title">{data.title}</h1>
+        {data.summary && <p>{data.summary}</p>}
+        {links.length > 0 && <div class="link-list" aria-label="配信リンク">{links.map(([label, url]) => <a class="pill" href={url}>{label}</a>)}</div>}
+      </div>
+    </header>
+    <div class="release-notes">
+      {track.body?.trim() && <section class="section"><h2>作品について</h2><div class="prose"><Content /></div></section>}
+      {data.lyrics && <section class="section"><h2>歌詞</h2><div class="plain-text">{data.lyrics}</div></section>}
+      {data.showPrompts && (data.stylePrompt || data.extraPrompt) && <section class="section"><h2>制作プロンプト</h2>
+        {data.stylePrompt && <><h3>Style</h3><pre>{data.stylePrompt}</pre></>}
+        {data.extraPrompt && <><h3>追加プロンプト</h3><pre>{data.extraPrompt}</pre></>}
+      </section>}
+    </div>
+  </article>
+</Layout>

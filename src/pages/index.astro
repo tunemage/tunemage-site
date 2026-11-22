@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/GalleryMasonry.astro';
+import LiveEvents from '../components/LiveEvents.astro';
+import { getProfile, getMusic, getLive, href, jstToday, serviceLinks } from '../data';
+const [profile, tracks, events] = await Promise.all([getProfile(), getMusic(), getLive()]);
+const featured = tracks.filter(({ data }) => data.featured).slice(0, 6);
+const today = jstToday();
+const upcoming = events.filter(({ data }) => data.date >= today).sort((a, b) => a.data.date.localeCompare(b.data.date));
+const past = events.filter(({ data }) => data.date < today).sort((a, b) => b.data.date.localeCompare(a.data.date));
+const recent = [...upcoming, ...past].slice(0, 2);
+const links = serviceLinks(profile);
+const contact = profile.contact.includes('://') ? profile.contact : `mailto:${profile.contact}`;
+---
+<Layout section="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>{profile.name}<span aria-hidden="true">.</span></h1>
+      {profile.tagline && <p class="tagline">{profile.tagline}</p>}
+      {profile.bio && <p class="intro">{profile.bio}</p>}
+      <a class="text-link" href="#featured">代表作品を見る</a>
+    </div>
+    {profile.hero && <div class="hero-art"><img src={href(profile.hero)} alt={profile.heroAlt} fetchpriority="high" width="900" height="900" /></div>}
+  </section>
+  {profile.sample && <p class="sample-notice">掲載中の画像・楽曲・ライブはサンプルです。</p>}
+  <section id="featured" class="section">
+    <div class="section-heading"><h2>Selected Music</h2><a class="text-link" href={href('music/')}>楽曲一覧</a></div>
+    {featured.length ? <Gallery tracks={featured} /> : <p class="muted">おすすめ楽曲の公開をお待ちください。</p>}
+  </section>
+  {profile.activities.length > 0 && <section class="section about">
+    <h2>About</h2>
+    <ul>{profile.activities.map((item) => <li>{item}</li>)}</ul>
+  </section>}
+  <section class="section">
+    <div class="section-heading"><h2>Live</h2><a class="text-link" href={href('live/')}>ライブ一覧</a></div>
+    {recent.length ? <LiveEvents events={recent} compact /> : <p class="muted">ライブ情報は準備中です。</p>}
+  </section>
+  <section id="contact" class="section contact">
+    <h2>Contact</h2>
+    {profile.contactNote && <p>{profile.contactNote}</p>}
+    <div class="link-list">
+      {profile.contact && <a class="pill" href={contact}>お問い合わせ</a>}
+      {links.map(([label, url]) => <a class="pill" href={url}>{label}</a>)}
+    </div>
+    {!profile.contact && links.length === 0 && <p class="muted">連絡先・配信リンクは準備中です。</p>}
+  </section>
+</Layout>

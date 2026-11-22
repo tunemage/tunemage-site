@@ -1,0 +1,84 @@
+/* Frame Shift typography and theme tokens are defined in global.css. */
+:root { --content-width: 72rem; color-scheme: dark; scroll-padding-top: 1.5rem; }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font: 1rem/1.75 var(--font-sans); }
+.wrap { width: min(var(--content-width), 100% - 3rem); margin-inline: auto; }
+.site-header { min-height: 5rem; display: flex; align-items: center; gap: clamp(.65rem, 2vw, 1.65rem); border-bottom: 1px solid var(--color-rule); }
+.wordmark { margin-right: auto; font: 2rem/.9 var(--font-display); }
+.wordmark span, .hero h1 span { color: var(--color-accent); }
+.site-header nav { display: flex; gap: clamp(.65rem, 2.6vw, 2rem); font-size: .875rem; }
+.site-header nav a { padding-block: .65rem; color: var(--color-muted); }
+.site-header nav a:hover, .site-header nav a[aria-current] { color: var(--color-accent); }
+.skip-link { position: absolute; z-index: 2; top: .5rem; left: .5rem; padding: .5rem; background: var(--color-paper); transform: translateY(-150%); }
+.skip-link:focus { transform: none; }
+.hero { display: grid; grid-template-columns: .85fr 1fr; align-items: center; gap: clamp(1rem, 4vw, 4rem); padding-block: clamp(2rem, 5vw, 4.5rem); }
+.hero h1 { font: clamp(4.5rem, 11vw, 10.5rem)/.8 var(--font-display); letter-spacing: -.045em; overflow-wrap: anywhere; }
+.hero-copy .tagline { margin-top: 1.35rem; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 600; }
+.intro { color: var(--color-muted); max-width: 32ch; margin-block: .75rem 1.15rem; }
+.hero-art { aspect-ratio: 1.23; overflow: hidden; background: var(--color-paper-2); }
+.hero-art img, .track-art img { width: 100%; height: 100%; object-fit: cover; }
+.section { padding-block: clamp(1.8rem, 4.5vw, 3.75rem); border-top: 1px solid var(--color-rule); }
+.section h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 4.5vw, 3.25rem); line-height: 1.2; margin-bottom: 1.35rem; }
+.section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.text-link { color: var(--color-accent); text-decoration: underline; text-underline-offset: .26em; font-size: .9rem; }
+.tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.8rem, 3vw, 2rem); }
+.track-link { display: block; }
+.track-link:hover h3 { color: var(--color-accent); }
+.track-art { aspect-ratio: 1; background: var(--color-paper-2); overflow: hidden; }
+.track-caption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; column-gap: .6rem; margin-top: .6rem; }
+.track-caption h3, .event h3 { font-size: 1.05rem; font-weight: 600; }
+.track-caption time, .track-link p, .muted { color: var(--color-muted); }
+.track-caption time { font-size: .85rem; }
+.track-link p { font-size: .9rem; }
+.sample, .sample-notice { color: var(--color-muted); font-size: .85rem; }
+.sample { margin-inline-end: .5em; }
+.release-heading time + .sample { margin-inline-start: .75em; }
+.sample-notice { padding-bottom: 1rem; }
+.about { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; }
+.about ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1rem; }
+.about li { border-bottom: 1px solid var(--color-rule); padding-bottom: .45rem; }
+.event { display: grid; grid-template-columns: 8rem minmax(0,1fr); align-items: start; gap: .6rem 1rem; padding-block: 1rem; border-bottom: 1px solid var(--color-rule); }
+.event time { color: var(--color-accent); font-variant-numeric: tabular-nums; }
+.event img { grid-column: 2; width: min(100%, 15rem); aspect-ratio: 1.6; object-fit: cover; }
+.event > div { grid-column: 2; }
+.event-list .event:first-child { padding-top: 0; }
+.contact { padding-bottom: 3rem; }
+.link-list { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .65rem; }
+.pill { border: 1px solid var(--color-rule); padding: .45rem .9rem; border-radius: 99rem; }
+.pill:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.site-footer { border-top: 1px solid var(--color-rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; color: var(--color-muted); font-size: .85rem; padding-block: 1.5rem; margin-top: 2rem; }
+.page-heading { padding-block: clamp(2rem, 7vw, 5rem); }
+.page-heading h1 { font: clamp(4rem, 10vw, 8rem)/.9 var(--font-display); margin-bottom: .65rem; }
+.back { display: inline-block; margin-block: 1.5rem; }
+.release-heading { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); gap: clamp(1rem, 4vw, 4rem); align-items: center; margin-bottom: 2rem; }
+.song-title { font-weight: 600; font-size: clamp(1.75rem, 5vw, 3.8rem); line-height: 1.22; margin-block: .45rem .85rem; overflow-wrap: anywhere; }
+.release-notes { max-width: 48rem; }
+.prose p, .prose ul, .prose ol { margin-block: .5rem 1rem; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose a { color: var(--color-accent); text-decoration: underline; }
+.plain-text, pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+pre { padding: .85rem 1rem; background: var(--color-paper-2); margin-block: .4rem 1rem; }
+@media (max-width: 42rem) {
+  .wrap { width: calc(100% - 1.75rem); }
+  .site-header { min-height: 3.75rem; }
+  .wordmark { font-size: 1.6rem; }
+  .site-header nav { gap: .58rem; }
+  .site-header #theme-toggle { width: 2rem; height: 2rem; }
+  .hero, .release-heading { grid-template-columns: 1fr; }
+  .hero-art { grid-row: 1; aspect-ratio: 1.8; }
+  .hero h1 { font-size: clamp(4rem, 16vw, 6.5rem); }
+  .hero-copy .tagline { margin-top: .85rem; }
+  .tracks { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .about { grid-template-columns: 1fr; gap: 0; }
+  .event { grid-template-columns: 1fr; }
+  .event > div, .event img { grid-column: 1; }
+  .release-heading .track-art { width: min(100%, 26rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: .001ms !important; }
+}
+@media (max-width: 24rem) {
+  .site-header { flex-wrap: wrap; row-gap: 0; padding-top: .65rem; }
+  .site-header nav { order: 1; width: 100%; justify-content: space-between; }
+}
