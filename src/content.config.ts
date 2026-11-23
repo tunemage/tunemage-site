@@ -30,7 +30,7 @@ const music = defineCollection({
     date, cover: image, coverAlt: text, summary: text, lyrics: text,
     stylePrompt: text, extraPrompt: text, showPrompts: z.boolean().default(false),
     featured: z.boolean().default(false), order: z.number().int().nullish().transform((value) => value ?? 100),
-    ...links, sample: z.boolean().default(false),
+    suno: text, youtube: text, spotify: text, other: text, sample: z.boolean().default(false),
   }),
 });
 const live = defineCollection({

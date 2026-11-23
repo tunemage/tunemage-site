@@ -1,18 +1,18 @@
 name: tunemage
-tagline: 音をつくる。声で届ける。
-bio: AIを使った楽曲制作を軸に、オリジナル曲の配信、ライブでの歌唱、映像制作に取り組んでいます。
-hero: /media/hero.jpg
-heroAlt: 赤く沈む太陽と、光を反射する夜の道路
+tagline: 少しズレてて優しい音楽と物語を。
+bio: tunemage です。本業のエンジニアのかたわら、物語のある音楽を作っています。妖怪や神話、不器用な友情、少しズレた優しさ。一曲ごとに違うキャラクターたちが登場し、時に交差して、どこか希望のある小さな物語を音楽で描いています。
+hero: /media/tunemage-hero.png
+heroAlt: 月明かりと提灯の下で、狐たちと音楽を作る人物のイラスト
 activities:
   - AIを活用した楽曲制作
   - オリジナル楽曲の配信
   - ライブ出演・歌唱
   - 映像制作
-suno: ""
-youtube: ""
-spotify: ""
+suno: "https://suno.com/@tunemage"
+youtube: "https://www.youtube.com/@tunemage"
+spotify: "https://open.spotify.com/intl-ja/artist/2EZJChTEZmczH6zLlW3kKu"
 other: ""
-x: ""
+x: "https://x.com/tunemage"
 contact: ""
-contactNote: ライブ出演、共同制作、イベント企画などのご相談を歓迎しています。
-sample: true
+contactNote: ライブ出演、共同制作、イベント企画など、さまざまな活動のお誘いを歓迎しています。\nご興味を持っていただけましたら、以下のXアカウントまでお気軽にDMでご連絡ください。
+sample: false

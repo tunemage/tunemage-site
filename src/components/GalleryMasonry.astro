@@ -1,23 +1,38 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { displayDate, href } from '../data';
-interface Props { tracks: CollectionEntry<'music'>[]; }
-const { tracks } = Astro.props;
+import { musicLinks } from '../music-links';
+import YouTubePlayer from './YouTubePlayer.astro';
+
+interface Props { tracks: CollectionEntry<'music'>[]; preferVideo?: boolean; }
+const { tracks, preferVideo = false } = Astro.props;
 ---
 <div class="masonry-container tracks">
-  {tracks.map(({ data }) => (
-    <article class="masonry-item">
-      <a class="track-link" href={href(`music/${data.slug}/`)}>
-        <div class="track-art" transition:name={`cover-${data.slug}`}>
-          {data.cover && <img src={href(data.cover)} alt={data.coverAlt} loading="lazy" decoding="async" width="640" height="640" />}
-        </div>
-        <div class="track-caption">
-          <h3>{data.title}</h3>
-          <time datetime={data.date}>{displayDate(data.date)}</time>
-        </div>
-        {data.summary && <p>{data.summary}</p>}
-        {data.sample && <span class="sample">サンプル</span>}
-      </a>
-    </article>
-  ))}
+  {tracks.map(({ data }) => {
+    const embed = preferVideo ? musicLinks(data).embed : undefined;
+    return (
+      <article class:list={['masonry-item', { 'track-with-video': embed }]}>
+        {embed && <YouTubePlayer src={embed} title={data.title} lazy />}
+        <a class="track-link" href={href(`music/${data.slug}/`)}>
+          {!embed && (
+            <div class="track-art" transition:name={`cover-${data.slug}`}>
+              {data.cover && <img src={href(data.cover)} alt={data.coverAlt} loading="lazy" decoding="async" width="640" height="640" />}
+            </div>
+          )}
+          <div class="track-caption">
+            <h3>{data.title}</h3>
+            <time datetime={data.date}>{displayDate(data.date)}</time>
+          </div>
+          {data.summary && <p>{data.summary}</p>}
+          {data.sample && <span class="sample">サンプル</span>}
+        </a>
+      </article>
+    );
+  })}
 </div>
+
+<style>
+  @media (max-width: 42rem) {
+    .track-with-video { grid-column: 1 / -1; }
+  }
+</style>

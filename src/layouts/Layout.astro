@@ -18,6 +18,7 @@ const nav = [
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="64x64" href={href('favicon.png')} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title ? `${title} | ${profile.name}` : profile.name}</title>
     <meta name="description" content={description || profile.bio} />
@@ -49,7 +50,6 @@ const nav = [
     <main id="main" class="wrap"><slot /></main>
     <footer class="wrap site-footer">
       <span>© {profile.name}</span>
-      <a href="https://github.com/EmaSuriano/astro-frame-shift">Astro Frame Shift by Ema Suriano</a>
     </footer>
   </body>
 </html>

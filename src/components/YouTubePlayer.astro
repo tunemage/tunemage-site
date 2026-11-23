@@ -1,0 +1,26 @@
+---
+interface Props { src: string; title: string; lazy?: boolean; }
+const { src, title, lazy = false } = Astro.props;
+---
+<iframe
+  src={src}
+  title={`${title} — YouTubeプレイヤー`}
+  width="1280"
+  height="720"
+  loading={lazy ? 'lazy' : undefined}
+  allow="encrypted-media; picture-in-picture"
+  allowfullscreen
+  referrerpolicy="strict-origin-when-cross-origin"
+></iframe>
+
+<style>
+  iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    border: 0;
+    background: var(--color-paper-2);
+  }
+</style>
